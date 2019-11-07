@@ -1,0 +1,29 @@
+server:
+  port: 14001
+
+spring:
+  application:
+    name: demo-springcloud-2-zuul
+
+management:
+  security:
+    enabled: false # 关闭验证
+  endpoints: # 开放监控端口
+    web:
+      exposure:
+        include: "*"
+        
+zuul:
+  host:
+    connect-timeout-millis: 2000 # 定义连接超时时间 2 秒
+    socket-timeout-millis: 1000 # 定义socket连接超时时长 1 秒
+    max-total-connections: 200 # 定义http链接池大小
+    max-per-route-connections: 20 # 每个host的最大连接数 
+  ribbon-isolation-strategy: semaphore # 限流配置
+  semaphore:
+    max-semaphore: 100 # 最大信号量
+  #ignored-services: '*' # 服务内部调用的服务，可以忽略
+  routes:
+    provider:
+      path: /provider/**
+      serviceId: demo-springcloud2-provider          

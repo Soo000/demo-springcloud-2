@@ -1,0 +1,15 @@
+server:
+  port: 14001
+
+spring:
+  application:
+    name: demo-springcloud-2-zuul
+
+management:
+  security:
+    enabled: false # 关闭验证
+  endpoints: # 开放监控端口
+    web:
+      exposure:
+        include: "*"
+    

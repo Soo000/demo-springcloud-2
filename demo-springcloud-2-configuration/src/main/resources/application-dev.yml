@@ -1,0 +1,23 @@
+server:
+  port: 8888
+  
+spring:
+  application:
+    name: demo-springcloud-2-configuration
+#  profiles:
+#    active: native,dev # 设置为本地启动的方式；默认是 git；已在启动命令行中 --spring.profiles.active=native,dev 指定；
+  cloud:
+    config:
+      server:
+#        git:
+#          uri: d:/tmp/git/config
+        native:
+          searchLocations: classpath:/config
+
+eureka:
+  instance:
+    prefer-ip-address: true
+#    instance-id: ${spring.application.name}:${spring.application.instance_id:${spring.cloud.client.ip-address}:${server.port}}
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/        

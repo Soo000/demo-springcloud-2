@@ -1,0 +1,28 @@
+server:
+  port: 15001
+
+spring:
+  application:
+    name: demo-springcloud-2-provider
+  cloud:
+    stream:
+      default:
+        consumer:
+          maxAttempts: 5
+          backOffInitialInterval: 2000
+          backOffMultiplier: 5
+          backOffMaxInterval: 1500000
+      bindings:
+        myoutput:
+          destination: my-exchange
+          group: my-output-group
+          contentType: application/json
+
+management:
+  security:
+    enabled: false # 关闭验证
+  endpoints: # 开放监控端口
+    web:
+      exposure:
+        include: "*"
+    
