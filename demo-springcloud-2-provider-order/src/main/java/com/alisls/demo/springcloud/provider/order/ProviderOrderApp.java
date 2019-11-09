@@ -8,12 +8,12 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 import com.alisls.demo.springcloud.provider.order.stream.MySource;
 
 @SpringBootApplication
-@EntityScan(basePackages = {"com.alisls.demo.springcloud.provider.entity"})
+@EntityScan(basePackages = {"com.alisls.demo.springcloud.provider.order.entity"})
 @EnableBinding(MySource.class)
-public class ProviderApp {
+public class ProviderOrderApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProviderApp.class, args);
+		SpringApplication.run(ProviderOrderApp.class, args);
 	}
 	
 }
