@@ -55,5 +55,6 @@
 		<module>demo-springcloud-2-zuul</module>		
 		<module>demo-springcloud-2-provider</module>
 		<module>demo-springcloud-2-provider-user</module>
+		<module>demo-springcloud-2-provider-order</module>
 	</modules>
 </project>

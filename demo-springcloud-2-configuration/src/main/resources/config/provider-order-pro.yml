@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: demo-springcloud-2-provider-order
+
+management:
+  security:
+    enabled: false # 关闭验证
+  endpoints: # 开放监控端口
+    web:
+      exposure:
+        include: "*"
