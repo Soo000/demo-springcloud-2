@@ -1,10 +1,10 @@
 eureka:
   client:
-    serviceUrl:
+    service-url:
       defaultZone: http://127.0.0.1:8761/eureka
   instance:
     prefer-ip-address: true
-    instanceId: ${spring.application.name}:${spring.application.instance_id:${spring.cloud.client.ip-address}:${server.port}}
+#    instanceId: ${spring.application.name}:${spring.application.instance_id:${spring.cloud.client.ip-address}:${server.port}}
 
 spring:
   cloud:
@@ -12,9 +12,8 @@ spring:
       fail-fast: true
       discovery:
         enabled: true
-        service-id: demo-springcloud2-configuration
+        service-id: demo-springcloud-2-configuration
       profile: dev
       name: rabbitmq,db,provider-user
-
   main:
     allow-bean-definition-overriding: true

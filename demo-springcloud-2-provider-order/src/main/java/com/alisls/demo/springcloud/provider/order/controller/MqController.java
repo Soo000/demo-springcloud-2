@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alisls.demo.springcloud.provider.order.service.notificat.NotificatService;
 
 @RestController
-@RequestMapping("/mq")
+@RequestMapping("/demo-springcloud-2/provider-order/mq")
 public class MqController {
 
     @Autowired

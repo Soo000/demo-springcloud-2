@@ -1,4 +1,4 @@
-package com.alisls.demo.springcloud.common.dto;
+package com.alisls.demo.springcloud.common.model.user.dto;
 
 import java.io.Serializable;
 
@@ -9,7 +9,7 @@ public class UserDTO implements Serializable {
 
 	private static final long serialVersionUID = 1171647143049064655L;
 	
-	private Integer userId;
+	private Long id;
 	private String username;
 	
 }

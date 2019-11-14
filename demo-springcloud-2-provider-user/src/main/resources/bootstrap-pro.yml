@@ -12,9 +12,8 @@ spring:
       fail-fast: true
       discovery:
         enabled: true
-        service-id: demo-springcloud2-configuration
+        service-id: demo-springcloud-2-configuration
       profile: pro
       name: rabbitmq,db,provider-user
-
   main:
     allow-bean-definition-overriding: true
