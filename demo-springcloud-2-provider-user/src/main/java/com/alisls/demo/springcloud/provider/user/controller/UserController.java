@@ -72,7 +72,7 @@ public class UserController {
 	@GetMapping("/getUserWithOrder/{id}")
 	@HystrixCommand(/* fallbackMethod = "getUserWithOrderFail" */
 		commandProperties = {
-			@HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds", value="2000")
+			@HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds", value="1000")
 		}
 	)
 	public Response getUserWithOrder(@PathVariable Long id) {

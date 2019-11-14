@@ -22,7 +22,7 @@ public class OrderController {
 	public Response getOrderById(@PathVariable Long id) {
 		OrderDTO orderDTO = orderService.getOrder(id);
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
