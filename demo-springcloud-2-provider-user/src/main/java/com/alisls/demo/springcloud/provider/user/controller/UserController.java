@@ -42,4 +42,21 @@ public class UserController {
 		return DataResult.ofSuccess(userDTO);
 	}
 	
+	/**
+	 * restTemplate 添加 ribbon负载均衡后的调用方式
+	 */
+	@GetMapping("/getUserByUsername/{username}")
+	public Response getUserByUsername(@PathVariable String username) {
+		UserDTO userDTO = new UserDTO();
+		userDTO.setId(1L);
+		userDTO.setUsername("测试用户");
+		
+		String orderId = "1";
+		String url = "http://DEMO-SPRINGCLOUD-2-PROVIDER-ORDER/demo-springcloud-2/provider-order/order/getOrderById/" + orderId;
+		Object response = restTemplate.getForObject(url, Object.class);
+		System.out.println("response = " + response);
+		
+		return DataResult.ofSuccess(userDTO);
+	}
+	
 }

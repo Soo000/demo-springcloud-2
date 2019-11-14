@@ -20,7 +20,6 @@ public class OrderController {
 
 	@GetMapping("/getOrderById/{id}")
 	public Response getOrderById(@PathVariable Long id) {
-		System.out.println("id = " + id);
 		OrderDTO orderDTO = orderService.getOrder(id);
 		return DataResult.ofSuccess(orderDTO);
 	}

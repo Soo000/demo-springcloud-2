@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +20,9 @@ public class InstanceController {
 	@Autowired
 	private InstanceService intanceService;
 	
+	/**
+	 * 获取订单服务实例
+	 */
 	@GetMapping("/getOrderServiceInstance")
 	public Response getOrderServiceInstance() {
 		// 根据服务ID获取实例
@@ -33,6 +37,15 @@ public class InstanceController {
 		System.out.println("port = " + port);
 		
 		return DataResult.ofSuccess(instances);
+	}
+	
+	/**
+	 * 获取服务实例
+	 */
+	@GetMapping("/getServiceInstance/{instanceId}")
+	public Response getServiceInstance(@PathVariable String instanceId) {
+		ServiceInstance serviceInstance = intanceService.getInstance(instanceId);
+		return DataResult.ofSuccess(serviceInstance);
 	}
 	
 }
