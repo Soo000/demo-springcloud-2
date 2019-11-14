@@ -11,10 +11,15 @@ import org.springframework.web.client.RestTemplate;
 import com.alisls.demo.springcloud.common.model.user.dto.UserDTO;
 import com.alisls.demo.springcloud.common.response.DataResult;
 import com.alisls.demo.springcloud.common.response.Response;
+import com.alisls.demo.springcloud.common.response.Result;
 import com.alisls.demo.springcloud.provider.user.service.instance.InstanceService;
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
 @RestController
 @RequestMapping("/demo-springcloud-2/provider-user/user")
+@DefaultProperties(defaultFallback = "defaultFallbackMethod")
 public class UserController {
 
 	@Autowired	
@@ -57,6 +62,41 @@ public class UserController {
 		System.out.println("response = " + response);
 		
 		return DataResult.ofSuccess(userDTO);
+	}
+	
+	
+	/**
+	 * 获取用户以及用户订单信息
+	 * 使用了 Hystrix 进行服务降级
+	 */
+	@GetMapping("/getUserWithOrder/{id}")
+	@HystrixCommand(/* fallbackMethod = "getUserWithOrderFail" */
+		commandProperties = {
+			@HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds", value="2000")
+		}
+	)
+	public Response getUserWithOrder(@PathVariable Long id) {
+		UserDTO userDTO = new UserDTO();
+		userDTO.setId(1L);
+		userDTO.setUsername("测试用户");
+		
+		String orderId = "1";
+		String url = "http://DEMO-SPRINGCLOUD-2-PROVIDER-ORDER/demo-springcloud-2/provider-order/order/getOrderById/" + orderId;
+		Object response = restTemplate.getForObject(url, Object.class);
+		System.out.println("response = " + response);
+		return DataResult.ofSuccess(userDTO);
+	}
+	
+	public Response getUserWithOrderFail(@PathVariable Long id) {
+		System.out.println("getUserWithOrder 进行了降级");
+		return DataResult.ofSuccess("服务器忙，请稍后再试！");
+	}
+	
+	/**
+	 * 通用服务降级方法
+	 */
+	public Response defaultFallbackMethod() {
+		return Result.ofFail();
 	}
 	
 }

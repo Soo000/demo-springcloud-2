@@ -17,6 +17,14 @@ spring:
           destination: my-exchange
           group: my-input-group
           contentType: application/json
+          
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread: 
+           timeoutInMilliseconds: 1000 # 服务调用超时时长 
 
 management:
   security:
