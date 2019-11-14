@@ -12,6 +12,7 @@ eureka:
   server:
     wait-time-in-ms-when-sync-empty: 0  # 当 eureka启动时，不能从集群获取，应该等多久
     enable-self-preservation: false # 自我保护是否开启
+    eviction-interval-timer-in-ms: 60000 # 服务失效剔除时长，默认60秒
     peer-eureka-nodes-update-interval-ms: 10000 # 获取数据间隔
 
 spring:
