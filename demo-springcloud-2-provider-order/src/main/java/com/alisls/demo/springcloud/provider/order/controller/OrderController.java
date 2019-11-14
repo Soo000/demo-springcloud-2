@@ -21,12 +21,26 @@ public class OrderController {
 	@GetMapping("/getOrderById/{id}")
 	public Response getOrderById(@PathVariable Long id) {
 		OrderDTO orderDTO = orderService.getOrder(id);
+		/*
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		*/
 		return DataResult.ofSuccess(orderDTO);
+	}
+	
+	@GetMapping("/getOrder/{id}")
+	public OrderDTO getOrder(@PathVariable Long id) {
+		/*
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		*/
+		return orderService.getOrder(id);
 	}
 	
 }

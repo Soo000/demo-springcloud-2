@@ -12,6 +12,7 @@ import com.alisls.demo.springcloud.common.model.user.dto.UserDTO;
 import com.alisls.demo.springcloud.common.response.DataResult;
 import com.alisls.demo.springcloud.common.response.Response;
 import com.alisls.demo.springcloud.common.response.Result;
+import com.alisls.demo.springcloud.provider.user.client.order.OrderFeignClient;
 import com.alisls.demo.springcloud.provider.user.service.instance.InstanceService;
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
@@ -27,6 +28,9 @@ public class UserController {
 	
 	@Autowired
 	private InstanceService instanceService;
+	
+	@Autowired
+	private OrderFeignClient orderClient;
 	
 	@GetMapping("/getUserById/{id}")
 	public Response getUserById(@PathVariable Long id) {
@@ -90,6 +94,15 @@ public class UserController {
 	public Response getUserWithOrderFail(@PathVariable Long id) {
 		System.out.println("getUserWithOrder 进行了降级");
 		return DataResult.ofSuccess("服务器忙，请稍后再试！");
+	}
+	
+	/**
+	 * 使用 Feign 方式调用用户订单
+	 */
+	@GetMapping("/findUserWithOrder/{id}")
+	public Response findUserWithOrder(@PathVariable Long id) {
+		UserDTO userDTO = orderClient.getOrder(id);
+		return DataResult.ofSuccess(userDTO);
 	}
 	
 	/**
