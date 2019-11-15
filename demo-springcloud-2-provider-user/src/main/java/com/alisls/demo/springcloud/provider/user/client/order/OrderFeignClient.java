@@ -10,7 +10,7 @@ import com.alisls.demo.springcloud.common.model.user.dto.UserDTO;
 @FeignClient(value = "DEMO-SPRINGCLOUD-2-PROVIDER-ORDER", fallback = OrderFeignClientImpl.class)
 public interface OrderFeignClient {
 
-	@RequestMapping(value = "/demo-springcloud-2/provider-order/order/getOrder/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/order/getOrder/{id}", method = RequestMethod.GET)
 	UserDTO getOrder(@PathVariable("id") Long id);
 	
 }	

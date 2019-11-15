@@ -14,7 +14,7 @@ import com.alisls.demo.springcloud.common.response.Response;
 import com.alisls.demo.springcloud.provider.user.service.instance.InstanceService;
 
 @RestController
-@RequestMapping("/demo-springcloud-2/provider-user/instance")
+@RequestMapping("/instance")
 public class InstanceController {
 
 	@Autowired

@@ -19,7 +19,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
 @RestController
-@RequestMapping("/demo-springcloud-2/provider-user/user")
+@RequestMapping("/user")
 @DefaultProperties(defaultFallback = "defaultFallbackMethod")
 public class UserController {
 
@@ -44,7 +44,7 @@ public class UserController {
 		String host = orderInstance.getHost();
 		int port = orderInstance.getPort();
 		String orderId = "1";
-		String url = "http://" + host + ":" + port + "/demo-springcloud-2/provider-order/order/getOrderById/" + orderId;
+		String url = "http://" + host + ":" + port + "/order/getOrderById/" + orderId;
 		Object response = restTemplate.getForObject(url, Object.class);
 		System.out.println(response);
 		
@@ -61,7 +61,7 @@ public class UserController {
 		userDTO.setUsername("测试用户");
 		
 		String orderId = "1";
-		String url = "http://DEMO-SPRINGCLOUD-2-PROVIDER-ORDER/demo-springcloud-2/provider-order/order/getOrderById/" + orderId;
+		String url = "http://DEMO-SPRINGCLOUD-2-PROVIDER-ORDER/order/getOrderById/" + orderId;
 		Object response = restTemplate.getForObject(url, Object.class);
 		System.out.println("response = " + response);
 		
@@ -85,7 +85,7 @@ public class UserController {
 		userDTO.setUsername("测试用户");
 		
 		String orderId = "1";
-		String url = "http://DEMO-SPRINGCLOUD-2-PROVIDER-ORDER/demo-springcloud-2/provider-order/order/getOrderById/" + orderId;
+		String url = "http://DEMO-SPRINGCLOUD-2-PROVIDER-ORDER/order/getOrderById/" + orderId;
 		Object response = restTemplate.getForObject(url, Object.class);
 		System.out.println("response = " + response);
 		return DataResult.ofSuccess(userDTO);

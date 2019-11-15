@@ -12,7 +12,7 @@ import com.alisls.demo.springcloud.common.response.Response;
 import com.alisls.demo.springcloud.provider.order.service.order.OrderService;
 
 @RestController
-@RequestMapping("/demo-springcloud-2/provider-order/order")
+@RequestMapping("/order")
 public class OrderController {
 	
 	@Autowired
