@@ -2,7 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
 #    url: jdbc:mysql://192.168.1.118:8066/my-db?useUnicode=true&characterEncoding=utf8&useSSL=false
-    url: jdbc:mysql://192.168.1.118:3306/my-db-1?useUnicode=true&characterEncoding=utf8&useSSL=false
+#    url: jdbc:mysql://192.168.1.118:3306/my-db-1?useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://192.168.1.118:3306/demo-shiro-db?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: 1qa@WS
     type: com.alibaba.druid.pool.DruidDataSource

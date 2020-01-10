@@ -45,5 +45,5 @@ ribbon:
   ConnectionTimeout: 500
   ReadTimeout: 2000
   MaxAutoRetries: 1 # 读取超时重试次数，默认值2
-  MaxAutoRetriesNextServer: 1 # 读取超时重拾读取其它机器的次数，默认值1
+  MaxAutoRetriesNextServer: 1 # 读取超时时重新读取其它机器的次数，默认值1
       

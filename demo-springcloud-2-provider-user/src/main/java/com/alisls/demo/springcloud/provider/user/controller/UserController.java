@@ -32,6 +32,14 @@ public class UserController {
 	@Autowired
 	private OrderFeignClient orderClient;
 	
+	@GetMapping("/getTestUserById/{id}")
+	public Response getTestUserById(@PathVariable Long id) {
+		UserDTO userDTO = new UserDTO();
+		userDTO.setId(id);
+		userDTO.setUsername("测试用户");
+		return DataResult.ofSuccess(userDTO);
+	}
+	
 	@GetMapping("/getUserById/{id}")
 	public Response getUserById(@PathVariable Long id) {
 		UserDTO userDTO = new UserDTO();

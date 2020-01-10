@@ -1,0 +1,15 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: demo-springcloud-2-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: provider-user
+        uri: http://localhost:15001
+        predicates:
+          - Path=/provider-user/**
+        filters:
+          - StripPrefix=1 # StripPrefix=1 表示过滤器是去掉一个路径，即 /provider-user/** 去掉 /provider-user 变成 /**	                
