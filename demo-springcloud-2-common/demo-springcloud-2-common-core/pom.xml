@@ -2,15 +2,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
 	<parent>
 		<groupId>com.alisls.demo</groupId>
-		<artifactId>demo-springcloud-2</artifactId>
+		<artifactId>demo-springcloud-2-common</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>demo-springcloud-2-common</artifactId>
-	<packaging>pom</packaging>
-	<modules>
-		<module>demo-springcloud-2-common-core</module>
-		<module>demo-springcloud-2-common-model</module>
-	</modules>
+	
+	<artifactId>demo-springcloud-2-common-core</artifactId>
 </project>

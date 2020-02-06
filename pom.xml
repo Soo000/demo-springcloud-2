@@ -49,13 +49,12 @@
 	</dependencyManagement>
 
 	<modules>
-		<module>demo-springcloud-2-common</module>
 		<module>demo-springcloud-2-eureka</module>
 		<module>demo-springcloud-2-configuration</module>
 		<module>demo-springcloud-2-zuul</module>
-		<module>demo-springcloud-2-gateway</module>	
-		<module>demo-springcloud-2-provider-user</module>
-		<module>demo-springcloud-2-provider-order</module>
-		<module>demo-springcloud-2-common-model</module>
+		<module>demo-springcloud-2-gateway</module>
+		<module>demo-springcloud-2-common</module>
+		<module>demo-springcloud-2-service-user</module>
+		<module>demo-springcloud-2-service-order</module>
 	</modules>
 </project>

@@ -1,0 +1,66 @@
+#server:
+#  port: 15001
+
+spring:
+  application:
+    name: demo-springcloud-2-service-user
+  cloud:
+    stream:
+      default:
+        consumer:
+          maxAttempts: 5
+          backOffInitialInterval: 2000
+          backOffMultiplier: 5
+          backOffMaxInterval: 1500000
+      bindings:
+        myinput:
+          destination: my-exchange
+          group: my-input-group
+          contentType: application/json
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://192.168.1.118:8066/my-db?useUnicode=true&characterEncoding=utf8&useSSL=false
+#    url: jdbc:mysql://192.168.1.118:3306/my-db-1?useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://192.168.1.118:3306/demo-shiro-db?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 1qa@WS
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    open-in-view: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+           timeoutInMilliseconds: 1000 # 服务调用超时时长
+      circuitBreaker: # 断路器
+        enabled: true # 是否开启断路器，默认true
+        requestVolumeThreshold: 10 # 断路器阈值，默认20
+        sleepWindowInMilliseconds: 10000 # 休眠时间窗，默认值5000(5秒)
+        errorThresholdPercentage: 60 # 超时/失败百分比，默认50（50%）
+
+ribbon: # 在 Feign 中 Ribbon 的配置
+  ConnectionTimeout: 1000 # Feign 连接超时配置，默认1000
+  ReadTimeOut: 1000 # 读取超时，默认1000
+
+feign:
+  hystrix:
+    enabled: true # hystrix 在 Feign 中的开关
+
+management:
+  security:
+    enabled: false # 关闭验证
+  endpoints: # 开放监控端口
+    web:
+      exposure:
+        include: "*"
