@@ -12,16 +12,16 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "sys_user")
+@Table(name = "sys_role")
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString
-public class UserDO extends BaseDO {
+public class RoleDO extends BaseDO {
 
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
-	private String username;
+	private Long id;
+	
+	private String roleName;
 	
 }

@@ -20,7 +20,7 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.1.118:3306/demo-springcloud-provider-order?useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://192.168.1.118:3306/demo-springcloud-service-order?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: 1qa@WS
   jpa:

@@ -41,11 +41,6 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alisls.demo</groupId>
-            <artifactId>demo-springcloud-2-common-model</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
         	<groupId>com.alisls.demo</groupId>
         	<artifactId>demo-springcloud-2-service-user-api</artifactId>
         	<version>0.0.1-SNAPSHOT</version>
