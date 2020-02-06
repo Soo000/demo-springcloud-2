@@ -14,7 +14,7 @@ spring:
         enabled: true
         service-id: demo-springcloud-2-configuration
       profile: dev
-      name: rabbitmq,redis,db,provider-order
+      name: rabbitmq,redis,provider-order
 
   main:
     allow-bean-definition-overriding: true

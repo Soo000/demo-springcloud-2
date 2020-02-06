@@ -17,6 +17,22 @@ spring:
           destination: my-exchange
           group: my-output-group
           contentType: application/json
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.1.118:3306/demo-springcloud-provider-order?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 1qa@WS
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    open-in-view: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 
 management:
   security:
