@@ -62,3 +62,9 @@ management:
     web:
       exposure:
         include: "*"
+        
+swagger:
+  title: 用户服务接口文档
+  version: 1.0
+  description: 用户服务接口文档
+  basePackage: com.alisls.demo.springcloud.service.user.web
