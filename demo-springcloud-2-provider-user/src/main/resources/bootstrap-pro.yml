@@ -14,6 +14,6 @@ spring:
         enabled: true
         service-id: demo-springcloud-2-configuration
       profile: pro
-      name: rabbitmq,db,provider-user
+      name: rabbitmq,provider-user
   main:
     allow-bean-definition-overriding: true

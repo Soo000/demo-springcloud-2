@@ -9,6 +9,8 @@ eureka:
     fetch-registry: false # 检索服务
   service-url:
     defaultZone: http://localhost:8761/eureka # 在哪个地址查找eureka实例
+    #defaultZone: http://${EUREKA-HOST:DEMO-SPRINGCLOUD-EUREKA}:${EUREKA-PORT:18761}/eureka/
+    #defaultZone: http://用户名:密码@${EUREKA-HOST:DEMO-SPRINGCLOUD-EUREKA}:${EUREKA-PORT:18761}/eureka/
   server:
     wait-time-in-ms-when-sync-empty: 0  # 当 eureka启动时，不能从集群获取，应该等多久
     enable-self-preservation: false # 自我保护是否开启
@@ -18,6 +20,7 @@ eureka:
 spring:
   application:
     name: demo-springcloud-2-eureka
+    #name: @artifactId@
   security:
     user:
       name: root
