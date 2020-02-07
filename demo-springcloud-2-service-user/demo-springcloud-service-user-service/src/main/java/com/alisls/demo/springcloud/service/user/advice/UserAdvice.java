@@ -1,4 +1,4 @@
-package com.alisls.demo.springcloud.service.user.web;
+package com.alisls.demo.springcloud.service.user.advice;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ResponseBody;
