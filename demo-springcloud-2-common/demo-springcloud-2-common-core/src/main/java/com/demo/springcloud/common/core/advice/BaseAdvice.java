@@ -1,4 +1,4 @@
-package com.demo.springcloud.common.core.web;
+package com.demo.springcloud.common.core.advice;
 
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
