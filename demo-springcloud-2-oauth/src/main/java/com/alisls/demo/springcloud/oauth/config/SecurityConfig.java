@@ -2,57 +2,77 @@ package com.alisls.demo.springcloud.oauth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.alisls.demo.springcloud.oauth.util.NoEncryptPasswordEncoder;
+import com.alisls.demo.springcloud.oauth.constant.PermitAllUrl;
 
-@Configuration
+/**
+ * Spring Security 配置
+ */
 @EnableWebSecurity
-@Order(2)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private UserDetailsService userDetailsService;
+	public UserDetailsService userDetailsService;
 	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-	    //return new BCryptPasswordEncoder();
-	    return new NoEncryptPasswordEncoder();
-	}
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-	    http.requestMatchers().antMatchers("/oauth/**")
-	            .and()
-	            .authorizeRequests()
-	            .antMatchers("/oauth/**").authenticated()
-	            .and()
-	            .csrf().disable();
-	}
-
+	/**
+	 * 全局用户信息<br>
+	 * 方法上的注解@Autowired的意思是，方法的参数的值是从spring容器中获取的<br>
+	 * 即参数AuthenticationManagerBuilder是spring中的一个Bean
+	 *
+	 * @param auth 认证管理
+	 * @throws Exception 用户认证异常信息
+	 */
+	@Autowired
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-	    auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+		/*
+		auth.inMemoryAuthentication()
+			.withUser("admin")
+			.password("admin")
+			.roles("USER", "ADMIN");
+		*/
+		
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
 	}
 
 	/**
-	 * 不定义没有password grant_type,密码模式需要AuthenticationManager支持
-	 *
-	 * @return
-	 * @throws Exception
+	 * 认证管理
+	 * 
+	 * @return 认证管理对象
+	 * @throws Exception 认证异常信息
+	 */
+	@Bean
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
+
+	/**
+	 * http安全配置
+	 * 
+	 * @param http http请求
+	 * @throws Exception 异常信息
 	 */
 	@Override
-	@Bean
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-	    return super.authenticationManagerBean();
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+				.antMatchers(PermitAllUrl.permitAllUrl()).permitAll() // 放开权限的url
+				.anyRequest().authenticated()
+				.and()
+				.httpBasic()
+				.and().csrf().disable();
 	}
-	
+
 }

@@ -19,7 +19,7 @@ spring:
           contentType: application/json
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.1.118:3306/demo-springcloud-service-user?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: 1qa@WS

@@ -4,22 +4,16 @@ server:
 spring:
   application:
     name: demo-springcloud-2-oauth
-  redis:
-    database: 0
-    host: 192.168.1.117
-    port: 6379
-#    password:
-    jedis:
-      pool:
-        max-active: 8
-        max-idle: 8
-        min-idle: 0
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.1.118:3306/cloud_oauth?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: 1qa@WS
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      connection-test-query: SELECT 1
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -65,26 +59,31 @@ zuul:
 #    - demo-springcloud-2-provider-order
 #   retryable: false # 是否重试
 
-hystrix: # Zuul 默认集成了 hystrix 和 ribbon，所有策略都做默认配置，熔断超时只有1s，很容易触发，因此我们手动配置
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 6000
 ribbon:
+  eager-load:
+    enabled: true
+    clients: user-center
   ConnectionTimeout: 500
   ReadTimeout: 2000
   MaxAutoRetries: 1 # 读取超时重试次数，默认值2
   MaxAutoRetriesNextServer: 1 # 读取超时时重新读取其它机器的次数，默认值1
   
-security:
-  oauth2:
-    client:
-      access-token-uri: http://localhost:${server.port}/auth/oauth/token
-      user-authorization-uri: http://localhost:${server.port}/auth/oauth/authorize
-      client-id: web
-    resource:
-      user-info-uri:  http://localhost:${server.port}/auth/member
-      prefer-token-info: false
+hystrix: # Zuul 默认集成了ribbon和hystrix，所有策略都做默认配置，熔断超时只有1s，很容易触发，因此我们手动配置
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+access_token:
+  store-jwt: false
+  jwt-signing-key: xiao@wei@jia@gou=$==+_+%0%:)(:)
+  add-userinfo: false
+      
+logging:
+  level:
+    root: info
+    com.cloud: debug
+  file: logs/${spring.application.name}.log    
       

@@ -14,4 +14,4 @@ spring:
         enabled: true
         service-id: demo-springcloud-2-configuration
       profile: dev
-      name: oauth
+      name: redis,oauth
