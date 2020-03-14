@@ -43,6 +43,7 @@
 				<artifactId>spring-cloud-dependencies</artifactId>
 				<version>Greenwich.SR3</version>
 				<type>pom</type>
+				<!--maven不支持多继承，使用import来依赖管理配置-->
 				<scope>import</scope>
 			</dependency>
 		</dependencies>

@@ -1,9 +1,0 @@
-spring:
-  cloud:
-    config:
-      fail-fast: true
-      discovery:
-        enabled: true
-        service-id: demo-springcloud-2-configuration
-      profile: pro
-      name: redis,oauth
