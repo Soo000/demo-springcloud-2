@@ -9,6 +9,7 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 
 import javax.annotation.Resource;
@@ -49,7 +50,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 // 客户端密码，密码是需要加密的，通过PasswordEncoder加密
                 .secret(passwordEncoder.encode("123456"))
                 // 资源ID，如微服务名称。即当前客户端可以访问哪些微服务，如配置即可全部访问
-                .resourceIds("demo-springcloud-service-user-service")
+                .resourceIds("demo-springcloud-service-product-service")
                 /*
                  * 配置授权方式，这里可以配置多种模式
                  * authorization_code 授权码模式
@@ -93,6 +94,19 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
         // 设置TokenStore
         endpoints.tokenStore(tokenStore);
+    }
+
+    /**
+     * 令牌端点的安全配置
+     * @param security
+     * @throws Exception
+     */
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        // 设置JWT公钥端点不需要认证可用（默认拒绝访问）
+        security.tokenKeyAccess("permitAll()");
+        // 设置检查令牌端点认证后可用
+        security.checkTokenAccess("isAuthenticated()");
     }
 
 }

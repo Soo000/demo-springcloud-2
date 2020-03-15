@@ -59,5 +59,6 @@
 		<module>demo-springcloud-2-oauth</module>
 		<module>demo-springcloud-2-service-user</module>
 		<module>demo-springcloud-2-service-order</module>
-	</modules>
+        <module>demo-springcloud-2-service-product</module>
+    </modules>
 </project>
