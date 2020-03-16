@@ -12,10 +12,10 @@
     <groupId>com.alisls.demo</groupId>
     <artifactId>demo-springcloud-2-service-product</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>demo-springcloud-2-service-product-api</module>
         <module>demo-springcloud-2-service-product-service</module>
     </modules>
-
 
 </project>

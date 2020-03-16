@@ -1,0 +1,21 @@
+server:
+  port: 20001
+
+spring:
+  application:
+    name: demo-springcloud-2-oauth-sso-client1
+  thymeleaf:
+    cache: false
+
+security:
+  oauth2:
+    client:
+      client-id: client1
+      client-secret: client1-secret
+      user-authorization-uri: http://localhost:16001/auth/oauth/authorize
+      access-token-uri: http://localhost:16001/auth/oauth/token # 获取Token的地址
+    resource:
+      jwt:
+        # 当用户授权之后，会响应一个授权码，重定向到一个URL，如 http://localhost:9001/login?code=xxx
+        # 自动的会对/login去获取令牌，获取到令牌后会通过key-uri获取到的公钥进行解密然后本地身份认证和授权(session)
+        key-uri: http://localhost:16001/auth/oauth/token_key # 获取公钥

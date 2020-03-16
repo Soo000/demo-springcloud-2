@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * 微服务配置类
+ * @author Ke Wang
  */
 @Configuration
 public class OAuthServerConfig {

@@ -5,6 +5,8 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>demo-springcloud-2-oauth-server</module>
+		<module>demo-springcloud-2-oauth-sso-client1</module>
+		<module>demo-springcloud-2-oauth-sso-client2</module>
 	</modules>
 	<parent>
 		<groupId>com.alisls.demo</groupId>

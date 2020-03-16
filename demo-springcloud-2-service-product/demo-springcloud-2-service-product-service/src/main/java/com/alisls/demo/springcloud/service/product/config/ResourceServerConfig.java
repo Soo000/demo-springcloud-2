@@ -2,6 +2,8 @@ package com.alisls.demo.springcloud.service.product.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
@@ -44,4 +46,21 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         return tokenService;
     }
 
+    /**
+     * 控制令牌范围权限和授权规则
+     * @param http
+     * @throws Exception
+     */
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        // 设定Session策略为不创建HttpSession实例
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        // 设置资源访问授权规则
+        http.authorizeRequests()
+                // 设置访问资源/product/listProducts需要权限product:listProducts（注意顺序，不能放到后面来写）
+                .antMatchers("/product/listProducts").hasAuthority("product:listProducts")
+                // 设定资源服务器要求所有请求都必须有all范围(在认证服务器上针对客户端配置的范围)
+                .antMatchers("/**").access("#oauth2.hasScope('all')");
+    }
 }

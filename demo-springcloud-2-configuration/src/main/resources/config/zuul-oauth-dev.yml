@@ -4,14 +4,6 @@ server:
 spring:
   application:
     name: demo-springcloud-2-zuul-oauth
-
-management:
-  security:
-    enabled: false # 关闭验证
-  endpoints: # 开放监控端口
-    web:
-      exposure:
-        include: "*"
         
 zuul:
   host:
@@ -22,19 +14,21 @@ zuul:
   ribbon-isolation-strategy: semaphore # 限流配置
   semaphore:
     max-semaphore: 100 # 最大信号量
+  sensitive-headers: null # 默认Zuul认为请求头中 "Cookie", "Set-Cookie", "Authorization" 是敏感信息，它不会转发请求，因为把它设置为空，就会转发了
+  add-host-header: true # 正确的处理重定向操作
   #ignored-services: '*' # 服务内部调用的服务，可以忽略
 #  prefix: /api 全局前缀
   routes:
-    provider-user: # 路由ID
-      path: /provider-user/** # 匹配路径
-      serviceId: demo-springcloud-2-provider-user # 服务ID
-      #strip-prefix: false # 是否去除前缀，默认 false
-      #url: http://localhost:15001 # 服务匹配可以是服务ID，也可以是 url。通常使用服务ID，带有负载功能
-    demo-springcloud-2-provider-order: /provider-order/** # 路由的简化配置
     auth:
       path: /auth/**
-      serviceId: demo-springcloud-2-oauth
-      sensitiveHeaders: "*"  
+      serviceId: demo-springcloud-2-oauth-server
+      strip-prefix: false # 是否去除前缀，默认 false;
+#      sensitiveHeaders: "*"
+    service-product: # 路由ID
+      path: /product/** # 匹配路径
+      serviceId: demo-springcloud-2-service-product # 服务ID
+      strip-prefix: false # 是否去除前缀，默认 false; 如果为true，收到请求 /product/get/1 代理转发到/get/1
+      #url: http://localhost:15001 # 服务匹配可以是服务ID，也可以是 url。通常使用服务ID，带有负载功能
 #  ignored-services: # 配置忽略的微服务
 #    - demo-springcloud-2-provider-order
 #   retryable: false # 是否重试
@@ -51,14 +45,4 @@ ribbon:
   ReadTimeout: 2000
   MaxAutoRetries: 1 # 读取超时重试次数，默认值2
   MaxAutoRetriesNextServer: 1 # 读取超时时重新读取其它机器的次数，默认值1
-  
-security:
-  oauth2:
-    client:
-      access-token-uri: http://localhost:${server.port}/auth/oauth/token
-      user-authorization-uri: http://localhost:${server.port}/auth/oauth/authorize
-      client-id: web
-    resource:
-      user-info-uri:  http://localhost:${server.port}/auth/member
-      prefer-token-info: false
       
