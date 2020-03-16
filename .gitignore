@@ -21,3 +21,6 @@ gen/
 .classpath  
 .project  
 .DS_Store
+
+# Log files
+/logs/
