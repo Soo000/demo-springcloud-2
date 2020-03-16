@@ -2,7 +2,7 @@ package com.alisls.demo.springcloud.service.product.web;
 
 import com.springcloud.common.model.dto.DataResult;
 import com.springcloud.common.model.dto.Result;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,11 +25,11 @@ public class ProductController {
      */
     @GetMapping("/listProducts")
     //@PreAuthorize("hasAuthority('product:listProducts')")
-    public Result listProducts() {
+    public ResponseEntity<Result> listProducts() {
         List<String> list = new ArrayList<>();
         list.add("眼睛");
         list.add("双肩包");
-        return DataResult.ofSuccess(list);
+        return ResponseEntity.ok(DataResult.ofSuccess(list));
     }
 
 }
