@@ -33,7 +33,7 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         String name = "admin";
         String pwd = passwordEncoder.encode("admin");
-        List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("product:list");
+        List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("product:listProducts");
         return new User(name, pwd, grantedAuthorities);
     }
 

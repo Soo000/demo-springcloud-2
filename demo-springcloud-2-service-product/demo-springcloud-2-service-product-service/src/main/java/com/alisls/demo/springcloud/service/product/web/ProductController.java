@@ -24,7 +24,7 @@ public class ProductController {
      * @return Result
      */
     @GetMapping("/listProducts")
-    @PreAuthorize("hasAuthority('product:list')")
+    //@PreAuthorize("hasAuthority('product:listProducts')")
     public Result listProducts() {
         List<String> list = new ArrayList<>();
         list.add("眼睛");
