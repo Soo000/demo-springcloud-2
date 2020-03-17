@@ -23,7 +23,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-    private static final String RESOURCE_ID = "demo-all-service-resource-id";
+    private static final String RESOURCE_ID = "demo-springcloud-service-all";
 
     @Autowired
     private TokenStore tokenStore;
@@ -68,6 +68,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 // 设置访问资源/product/listProducts需要权限product:listProducts（注意顺序，不能放到后面来写）
                 .antMatchers("/product/listProducts").hasAuthority("product:listProducts")
                 // 设定资源服务器要求所有请求都必须有all范围(在认证服务器上针对客户端配置的范围)
-                .antMatchers("/**").access("#oauth2.hasScope('all')");
+                .antMatchers("/**").access("#oauth2.hasScope('PRODUCT_API')");
     }
 }

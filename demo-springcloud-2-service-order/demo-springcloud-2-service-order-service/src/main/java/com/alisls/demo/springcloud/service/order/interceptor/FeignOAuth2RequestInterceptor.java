@@ -22,7 +22,8 @@ public class FeignOAuth2RequestInterceptor implements RequestInterceptor {
     public void apply(RequestTemplate requestTemplate) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String accessToken = request == null ? StringUtils.EMPTY : request.getHeader(HttpHeaders.AUTHORIZATION);
-        log.info("拦截Feign的Http请求发送，从当前Request的Header中获取AUTHORIZATION值为{}", accessToken);
+        log.info("订单服务Feign的拦截器，拦截到Feign的Http请求发送，从当前Request的Header中获取AUTHORIZATION值为：");
+        log.info("{}", accessToken);
         requestTemplate.header(HttpHeaders.AUTHORIZATION, accessToken);
     }
 
