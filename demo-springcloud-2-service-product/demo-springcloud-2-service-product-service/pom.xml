@@ -40,6 +40,11 @@
             <artifactId>demo-springcloud-2-common-model</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.8</version>
+        </dependency>
     </dependencies>
 
     <build>
