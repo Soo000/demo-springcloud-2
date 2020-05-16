@@ -34,6 +34,14 @@ spring:
       hibernate:
         format_sql: true
 
+ribbon: # 在Feign中Ribbon的配置
+  ConnectionTimeout: 1000 # Feign 连接超时配置，默认1000
+  ReadTimeOut: 1000 # 读取超时，默认1000
+
+feign:
+  hystrix:
+    enabled: true # 在Feign中Hystrix的开关
+
 hystrix:
   command:
     default:
@@ -47,14 +55,6 @@ hystrix:
         sleepWindowInMilliseconds: 10000 # 休眠时间窗，默认值5000(5秒)
         errorThresholdPercentage: 60 # 超时/失败百分比，默认50（50%）
 
-ribbon: # 在 Feign 中 Ribbon 的配置
-  ConnectionTimeout: 1000 # Feign 连接超时配置，默认1000
-  ReadTimeOut: 1000 # 读取超时，默认1000
-
-feign:
-  hystrix:
-    enabled: true # hystrix 在 Feign 中的开关
-
 management:
   security:
     enabled: false # 关闭验证
@@ -64,7 +64,7 @@ management:
         include: "*"
         
 swagger:
-  title: 用户服务接口文档
+  title: 用户管理
   version: 1.0
-  description: 用户服务接口文档
+  description: 用户管理接口文档
   basePackage: com.alisls.demo.springcloud.service.user.web

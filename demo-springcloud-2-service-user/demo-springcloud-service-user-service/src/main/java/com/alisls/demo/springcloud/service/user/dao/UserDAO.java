@@ -7,4 +7,6 @@ import com.alisls.demo.springcloud.service.user.entity.UserDO;
 
 public interface UserDAO extends JpaRepository<UserDO, Long>, JpaSpecificationExecutor<UserDO> {
 
+    UserDO findByUsername(String username);
+
 }

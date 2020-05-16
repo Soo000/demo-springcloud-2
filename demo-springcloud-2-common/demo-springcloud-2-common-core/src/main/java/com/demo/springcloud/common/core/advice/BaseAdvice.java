@@ -1,13 +1,28 @@
 package com.demo.springcloud.common.core.advice;
 
+import com.demo.springcloud.common.core.exception.BizException;
+import org.springframework.beans.TypeMismatchException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.demo.springcloud.common.core.exception.BizException;
-
+/**
+ * 通用异常处理
+ *
+ * @author Ke Wang
+ */
 public class BaseAdvice {
 
     /**
-     * 捕获 BizException 异常
+     * 捕获TypeMismatchException异常
+     * @param typeMismatchException
+     * @return String
+     */
+    @ExceptionHandler(TypeMismatchException.class)
+    public String argumentTypeMismatchException(TypeMismatchException typeMismatchException) {
+        return "参数类型不匹配错误！";
+    }
+
+    /**
+     * 捕获BizException异常
      * @return
      */
     @ExceptionHandler(BizException.class)

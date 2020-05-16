@@ -1,5 +1,6 @@
 package com.alisls.demo.springcloud.oauth.server.config;
 
+import com.alisls.demo.springcloud.oauth.server.crypto.Sm2PasswordEncoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,9 +13,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class OAuthServerConfig {
 
-    @Bean
+    /**
+     * BCryptPasswordEncoder 加密算法
+     * @return
+     */
+    /*@Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }*/
+
+    /**
+     * 国密SM2加密算法
+     * @return
+     */
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new Sm2PasswordEncoder();
     }
 
 }

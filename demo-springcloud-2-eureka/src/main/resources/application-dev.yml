@@ -3,19 +3,17 @@ server:
 
 eureka:
   instance:
-    hostname: localhost # 实例
+    hostname: localhost # 服务注册中心实例的主机名
   client:
-    register-with-eureka: false # 是否注册到eureka
-    fetch-registry: false # 检索服务
+    register-with-eureka: false # 实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true
+    fetch-registry: false # 此客户端是否获取eureka服务器注册表上的注册信息，默认为true
   service-url:
     defaultZone: http://localhost:8761/eureka # 在哪个地址查找eureka实例
-    #defaultZone: http://${EUREKA-HOST:DEMO-SPRINGCLOUD-EUREKA}:${EUREKA-PORT:18761}/eureka/
-    #defaultZone: http://用户名:密码@${EUREKA-HOST:DEMO-SPRINGCLOUD-EUREKA}:${EUREKA-PORT:18761}/eureka/
+    #defaultZone: http://[用户名]:[密码]@${EUREKA-HOST:DEMO-SPRINGCLOUD-EUREKA}:${EUREKA-PORT:18761}/eureka/
   server:
-    wait-time-in-ms-when-sync-empty: 0  # 当 eureka启动时，不能从集群获取，应该等多久
     enable-self-preservation: false # 自我保护是否开启
-    eviction-interval-timer-in-ms: 60000 # 服务失效剔除时长，默认60秒
-    peer-eureka-nodes-update-interval-ms: 10000 # 获取数据间隔
+    eviction-interval-timer-in-ms: 10000 # 扫描失效服务的间隔时间（单位毫秒，默认是60*1000）即60秒
+    peer-eureka-nodes-update-interval-ms: 60000 # Eureka节点间间隔多长时间更新一次数据。默认10分钟
 
 spring:
   application:

@@ -28,5 +28,10 @@
             <artifactId>demo-springcloud-2-common-model</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.alisls.demo</groupId>
+            <artifactId>demo-springcloud-2-common-swagger</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

@@ -41,3 +41,9 @@ management:
     web:
       exposure:
         include: "*"
+
+swagger:
+  title: 订单管理
+  version: 1.0
+  description: 订单管理接口文档
+  basePackage: com.alisls.demo.springcloud.service.order.web

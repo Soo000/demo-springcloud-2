@@ -3,8 +3,8 @@ eureka:
     serviceUrl:
       defaultZone: http://127.0.0.1:8761/eureka
   instance:
-    prefer-ip-address: true
-#    instanceId: ${spring.application.name}:${spring.application.instance_id:${spring.cloud.client.ip-address}:${server.port}}
+    prefer-ip-address: true # 该实例相较于hostname是否优先使用IP
+#    instance-id: ${spring.application.name}:${spring.application.instance_id:${spring.cloud.client.ip-address}:${server.port}}
     
 spring:
   cloud:

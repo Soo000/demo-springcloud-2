@@ -64,7 +64,7 @@ management:
         include: "*"
         
 swagger:
-  title: 商品服务接口文档
+  title: 商品管理
   version: 1.0
-  description: 商品服务接口文档
+  description: 商品管理接口文档
   basePackage: com.alisls.demo.springcloud.service.product.web

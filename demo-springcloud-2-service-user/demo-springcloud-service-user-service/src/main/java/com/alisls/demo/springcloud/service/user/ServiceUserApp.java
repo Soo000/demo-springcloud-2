@@ -10,11 +10,16 @@ import com.alisls.demo.springcloud.service.user.stream.MySink;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * 用户服务
+ *
+ * @author Ke Wang
+ */
 @SpringBootApplication
+@EnableSwagger2
 @EnableCircuitBreaker
 @EnableFeignClients
 @EnableBinding(MySink.class)
-@EnableSwagger2
 public class ServiceUserApp {
 
 	public static void main(String[] args) {

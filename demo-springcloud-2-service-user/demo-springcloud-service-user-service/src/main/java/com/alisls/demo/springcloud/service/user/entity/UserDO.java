@@ -21,8 +21,18 @@ public class UserDO extends BaseDO {
 
 	@Id
 	//@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
+	private Long id;
+
 	private String username;
+
+	private String nickname;
+
+	private String mobile;
+
+	private String email;
+
 	private String password;
+
+	private Integer age;
 	
 }

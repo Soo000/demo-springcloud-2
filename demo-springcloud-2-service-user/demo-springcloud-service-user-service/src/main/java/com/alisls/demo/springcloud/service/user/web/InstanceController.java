@@ -2,6 +2,7 @@ package com.alisls.demo.springcloud.service.user.web;
 
 import java.util.List;
 
+import com.alisls.demo.springcloud.service.user.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alisls.demo.springcloud.service.user.service.impl.InstanceService;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/instance")
@@ -18,6 +20,9 @@ public class InstanceController {
 
 	@Autowired
 	private InstanceService intanceService;
+
+	@Autowired
+	private RestTemplate restTemplate;
 	
 	/**
 	 * 获取订单服务实例
@@ -45,6 +50,23 @@ public class InstanceController {
 	public ResponseEntity<ServiceInstance> getServiceInstance(@PathVariable String instanceId) {
 		ServiceInstance serviceInstance = intanceService.getInstance(instanceId);
 		return ResponseEntity.ok(serviceInstance);
+	}
+
+	/**
+	 * restTemplate 添加 ribbon负载均衡后的调用方式
+	 */
+	@GetMapping("/getUserByUsername/{username}")
+	public ResponseEntity<UserDTO> getUserByUsername(@PathVariable String username) {
+		UserDTO userDTO = new UserDTO();
+		userDTO.setId(1L);
+		userDTO.setUsername("测试用户");
+
+		String orderId = "1";
+		String url = "http://DEMO-SPRINGCLOUD-2-PROVIDER-ORDER/order/getOrderById/" + orderId;
+		Object response = restTemplate.getForObject(url, Object.class);
+		System.out.println("response = " + response);
+
+		return ResponseEntity.ok(userDTO);
 	}
 	
 }
