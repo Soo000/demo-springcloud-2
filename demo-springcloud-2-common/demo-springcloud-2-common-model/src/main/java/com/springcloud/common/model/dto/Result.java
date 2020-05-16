@@ -13,13 +13,19 @@ public class Result implements Serializable {
 
 	private static final long serialVersionUID = 8377646792793477213L;
 
-	// 是否成功
+    /**
+     * 是否成功
+     */
     private boolean success;
 
-    // 返回码
+    /**
+     * 返回码
+     */
     private Integer code;
 
-    // 返回信息
+    /**
+     * 返回信息
+     */
     private String message;
 
     public Result(ResultEnum resultEnum) {
@@ -40,6 +46,10 @@ public class Result implements Serializable {
 
     public static Result ofFail() {
         return new Result(ResultEnum.FAIL);
+    }
+
+    public static Result ofTimeout() {
+        return new Result(ResultEnum.TIMEOUT);
     }
 
 }

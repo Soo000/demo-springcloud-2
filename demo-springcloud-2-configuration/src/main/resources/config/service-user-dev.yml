@@ -38,6 +38,7 @@ ribbon: # 在Feign中Ribbon的配置
   ConnectionTimeout: 1000 # Feign 连接超时配置，默认1000
   ReadTimeOut: 1000 # 读取超时，默认1000
 
+# Feign中使用Hystrix配置
 feign:
   hystrix:
     enabled: true # 在Feign中Hystrix的开关
@@ -48,7 +49,7 @@ hystrix:
       execution:
         isolation:
           thread:
-           timeoutInMilliseconds: 1000 # 服务调用超时时长
+           timeoutInMilliseconds: 3000 # 服务调用超时时长
       circuitBreaker: # 断路器
         enabled: true # 是否开启断路器，默认true
         requestVolumeThreshold: 10 # 断路器阈值，默认20

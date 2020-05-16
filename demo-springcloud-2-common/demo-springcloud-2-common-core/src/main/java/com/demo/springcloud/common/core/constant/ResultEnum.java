@@ -10,6 +10,7 @@ public enum ResultEnum {
      */
     SUCCESS(true, 10000, "操作成功！"),
     FAIL(false, 10001, "操作失败"),
+    TIMEOUT(false, 10002, "请求超时"),
 
     /**
      * 权限
