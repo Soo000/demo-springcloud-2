@@ -7,6 +7,11 @@ import com.demo.springcloud.common.core.constant.ResultEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 查询结果
+ *
+ * @author Ke Wang
+ */
 @Data
 @NoArgsConstructor
 public class Result implements Serializable {

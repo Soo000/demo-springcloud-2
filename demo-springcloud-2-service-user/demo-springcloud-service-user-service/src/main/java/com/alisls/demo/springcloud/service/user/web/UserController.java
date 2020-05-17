@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Ke Wang
  */
-@Api(description = "用户管理")
+@Api(tags = "用户管理")
 @RestController
 @RequestMapping("/user")
 @DefaultProperties(defaultFallback = "defaultMethodFallback")
@@ -58,11 +58,6 @@ public class UserController {
 	@GetMapping("/getUserById/{id}")
     @HystrixCommand(fallbackMethod = "getUserByIdFallback")
 	public Result getUserById(@PathVariable Long id) {
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         UserDTO userDTO = userService.getUser(id);
 		return DataResult.ofSuccess(userDTO);
 	}
@@ -71,7 +66,7 @@ public class UserController {
      * 根据用户标识查询用户，服务降级方法
      */
 	public Result getUserByIdFallback(Long id) {
-	    log.info("根据用户标识查询用户，服务调用超时");
+	    log.info("根据用户标识{}查询用户，服务调用超时", id);
         return DataResult.ofTimeout();
     }
 
@@ -112,30 +107,29 @@ public class UserController {
                             value = "1000")
             }
 	)
-	public ResponseEntity<UserOrderVO> getUserOrder(@PathVariable Long userId) {
+	public Result getUserOrder(@PathVariable Long userId) {
 	    // 查询用户信息
 		UserDTO userDTO = userService.getUser(userId);
         // 查询订单信息
         OrderDTO orderDTO = orderClient.getOrderById(1L);
 
         // 返回数据
-        UserOrderVO userOrderVO = new UserOrderVO(userDTO, orderDTO);
-        return ResponseEntity.ok(userOrderVO);
+        return DataResult.ofSuccess(new UserOrderVO(userDTO, orderDTO));
 	}
 
     /**
      * 查询用户订单降级方法
      */
-	public ResponseEntity<UserOrderVO> getUserOrderFallback(@PathVariable Long id) {
-		log.info("根据用户标识查询用户和订单信息接口调用超时");
-		return ResponseEntity.ok(new UserOrderVO());
+	public Result getUserOrderFallback(@PathVariable Long id) {
+		log.info("根据用户标识{}查询用户和订单信息接口调用超时", id);
+		return Result.ofTimeout();
 	}
 	
 	/**
 	 * 通用服务降级方法
 	 */
-	public ResponseEntity<UserDTO> defaultMethodFallback() {
-		return ResponseEntity.ok(new UserDTO());
+	public Result defaultMethodFallback() {
+		return Result.ofTimeout();
 	}
 	
 }

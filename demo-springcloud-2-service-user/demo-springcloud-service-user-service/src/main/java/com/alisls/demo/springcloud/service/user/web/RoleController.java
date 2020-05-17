@@ -19,7 +19,7 @@ import lombok.AllArgsConstructor;
  *
  * @author Ke Wang
  */
-@Api(description = "角色管理")
+@Api(tags = "角色管理")
 @RestController
 @RequestMapping("/role")
 @AllArgsConstructor
