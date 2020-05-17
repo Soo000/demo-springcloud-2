@@ -9,6 +9,11 @@ import com.alisls.demo.springcloud.service.user.dto.MyMsg;
 import com.alisls.demo.springcloud.service.user.service.ReceiveService;
 import com.alisls.demo.springcloud.service.user.stream.MySink;
 
+/**
+ * 接收消息Service实现
+ *
+ * @author Ke Wang
+ */
 @Service("receiveService")
 public class ReceiveServiceImpl implements ReceiveService {
 

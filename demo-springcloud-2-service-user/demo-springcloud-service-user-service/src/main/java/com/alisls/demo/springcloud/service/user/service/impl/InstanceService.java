@@ -10,6 +10,11 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.netflix.ribbon.RibbonLoadBalancerClient;
 import org.springframework.stereotype.Service;
 
+/**
+ * 实例Service实现
+ *
+ * @author Ke Wang
+ */
 @Service
 public class InstanceService {
 

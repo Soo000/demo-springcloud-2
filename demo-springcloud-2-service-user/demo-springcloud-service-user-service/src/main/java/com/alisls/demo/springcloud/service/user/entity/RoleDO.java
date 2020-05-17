@@ -11,6 +11,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * 角色DO
+ *
+ * @author Ke Wang
+ */
 @Entity
 @Table(name = "sys_role")
 @NoArgsConstructor
@@ -21,6 +26,8 @@ public class RoleDO extends BaseDO {
 
 	@Id
 	private Long id;
+
+	private String roleCode;
 	
 	private String roleName;
 	

@@ -3,7 +3,7 @@ package com.alisls.demo.springcloud.service.user.service;
 import com.alisls.demo.springcloud.service.user.dto.UserDTO;
 
 /**
- * 用户服务
+ * 用户Service
  *
  * @author Ke Wang
  */

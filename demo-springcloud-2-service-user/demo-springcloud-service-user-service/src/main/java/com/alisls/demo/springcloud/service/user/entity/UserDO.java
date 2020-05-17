@@ -11,6 +11,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * 用户DO
+ *
+ * @author Ke Wang
+ */
 @Entity
 @Table(name = "sys_user")
 @Getter

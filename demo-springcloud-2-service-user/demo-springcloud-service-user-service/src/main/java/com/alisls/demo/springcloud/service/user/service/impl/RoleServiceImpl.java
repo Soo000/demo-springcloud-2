@@ -13,6 +13,11 @@ import com.demo.springcloud.common.core.exception.BizException;
 
 import lombok.AllArgsConstructor;
 
+/**
+ * 角色Service实现
+ *
+ * @author Ke Wang
+ */
 @Service("roleService")
 @AllArgsConstructor
 public class RoleServiceImpl implements RoleService {
