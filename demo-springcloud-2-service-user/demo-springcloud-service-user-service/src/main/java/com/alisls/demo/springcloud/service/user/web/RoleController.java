@@ -1,5 +1,7 @@
 package com.alisls.demo.springcloud.service.user.web;
 
+import com.springcloud.common.model.dto.DataResult;
+import com.springcloud.common.model.dto.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -36,9 +38,9 @@ public class RoleController {
             example = "1234567890123456789"
     )
 	@GetMapping("/getRoleById/{id}")
-	public ResponseEntity<RoleDTO> getRoleById(@PathVariable Long id) {
+	public Result getRoleById(@PathVariable Long id) {
 		RoleDTO roleDTO = roleService.getRoleById(id);
-		return ResponseEntity.ok(roleDTO);
+		return DataResult.ofSuccess(roleDTO);
 	}
 	
 }

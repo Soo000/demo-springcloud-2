@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import com.demo.springcloud.common.core.constant.ResultEnum;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +14,7 @@ import lombok.NoArgsConstructor;
  *
  * @author Ke Wang
  */
+@ApiModel(description = "操作结果")
 @Data
 @NoArgsConstructor
 public class Result implements Serializable {
@@ -21,16 +24,19 @@ public class Result implements Serializable {
     /**
      * 是否成功
      */
+    @ApiModelProperty(value = "操作结果状态", required = true, example = "true")
     private boolean success;
 
     /**
      * 返回码
      */
+    @ApiModelProperty(value = "操作结果编码", required = true, example = "10001")
     private Integer code;
 
     /**
      * 返回信息
      */
+    @ApiModelProperty(value = "操作结果信息", example = "成功")
     private String message;
 
     public Result(ResultEnum resultEnum) {

@@ -17,6 +17,11 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+
+		<demo-springcloud-2-common.version>0.0.1-SNAPSHOT</demo-springcloud-2-common.version>
+        <demo-springcloud-2-service-user.version>0.0.1-SNAPSHOT</demo-springcloud-2-service-user.version>
+        <demo-springcloud-2-service-order.version>0.0.1-SNAPSHOT</demo-springcloud-2-service-order.version>
+        <demo-springcloud-2-service-product.version>0.0.1-SNAPSHOT</demo-springcloud-2-service-product.version>
 	</properties>
 
 	<dependencies>

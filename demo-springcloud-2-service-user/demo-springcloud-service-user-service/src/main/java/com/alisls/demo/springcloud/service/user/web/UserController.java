@@ -67,7 +67,7 @@ public class UserController {
      */
 	public Result getUserByIdFallback(Long id) {
 	    log.info("根据用户标识{}查询用户，服务调用超时", id);
-        return DataResult.ofTimeout();
+        return Result.ofTimeout();
     }
 
     /**

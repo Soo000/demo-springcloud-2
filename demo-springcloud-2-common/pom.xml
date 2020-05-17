@@ -16,6 +16,21 @@
         <io.springfox.version>2.6.0</io.springfox.version>
     </properties>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${io.springfox.version}</version>
+			</dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${io.springfox.version}</version>
+            </dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<modules>
 		<module>demo-springcloud-2-common-core</module>
 		<module>demo-springcloud-2-common-model</module>

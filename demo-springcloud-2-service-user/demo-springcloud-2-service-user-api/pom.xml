@@ -19,17 +19,17 @@
         <dependency>
             <groupId>com.alisls.demo</groupId>
             <artifactId>demo-springcloud-2-common-model</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+			<version>${demo-springcloud-2-common.version}</version>
         </dependency>
 		<dependency>
 			<groupId>com.alisls.demo</groupId>
 			<artifactId>demo-springcloud-2-common-swagger</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${demo-springcloud-2-common.version}</version>
 		</dependency>
         <dependency>
             <groupId>com.alisls.demo</groupId>
             <artifactId>demo-springcloud-2-service-order-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+			<version>${demo-springcloud-2-service-order.version}</version>
         </dependency>
 	</dependencies>
 
