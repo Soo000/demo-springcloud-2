@@ -49,11 +49,11 @@ hystrix:
       execution:
         isolation:
           thread:
-           timeoutInMilliseconds: 3000 # 服务调用超时时长
+           timeoutInMilliseconds: 2000 # 服务调用超时时长
       circuitBreaker: # 断路器
         enabled: true # 是否开启断路器，默认true
-        requestVolumeThreshold: 10 # 断路器阈值，默认20
-        sleepWindowInMilliseconds: 10000 # 休眠时间窗，默认值5000(5秒)
+        requestVolumeThreshold: 3 # 断路器阈值，默认20
+        sleepWindowInMilliseconds: 30000 # 休眠时间窗，默认值5000(5秒)
         errorThresholdPercentage: 60 # 超时/失败百分比，默认50（50%）
 
 management:

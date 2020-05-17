@@ -52,13 +52,18 @@ public class UserController {
             name = "id",
             required = true,
             paramType = "path",
-            dataType = "Long",
+            dataType = "Integer",
             example = "1234567890123456789"
     )
 	@GetMapping("/getUserById/{id}")
     @HystrixCommand(fallbackMethod = "getUserByIdFallback")
 	public Result getUserById(@PathVariable Long id) {
-        UserDTO userDTO = userService.getUser(id);
+		try {
+			Thread.sleep(3000L);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		UserDTO userDTO = userService.getUser(id);
 		return DataResult.ofSuccess(userDTO);
 	}
 
