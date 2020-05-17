@@ -23,7 +23,16 @@ import javax.sql.DataSource;
 
 /**
  * 认证服务器配置类
+ * 1) 配置被允许访问此认证服务器的客户端信息，没有配置的客户端不允许访问；
+ * 2) 令牌管理：
+ *    配置令牌管理策略（如：JDBC/Redis/JWT）
+ *    配置令牌生成策略
+ *    配置令牌端点
+ *    配置令牌端点的安全
+ *
  * @EnableAuthorizationServer 注解开启了认证服务器功能
+ *
+ * @author Ke Wang
  */
 @Configuration
 @EnableAuthorizationServer
@@ -72,8 +81,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     /**
      * 内存方式配置被允许访问此认证服务器的客户端信息
-     * 1. 内存方式
-     * 2. 数据库方式
+     *   1）内存方式
+     *   2）数据库方式
      * @param clients
      * @throws Exception
      */
@@ -127,8 +136,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     /**
      * 数据方式配置被允许访问此认证服务器的客户端信息
-     * 1. 内存方式
-     * 2. 数据库方式
+     * 客户端信息配置方式有以下两种：
+     *   1）内存方式
+     *   2）数据库方式
      * @param clients
      * @throws Exception
      */

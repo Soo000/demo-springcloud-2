@@ -60,7 +60,7 @@
         <dependency>
             <groupId>com.alisls.demo</groupId>
             <artifactId>demo-springcloud-2-common-model</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${demo-springcloud-2-common.version}</version>
         </dependency>
     </dependencies>
 

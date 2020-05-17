@@ -16,6 +16,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
  * 资源服务器配置类
  * 注解 @EnableResourceServer 开启资源服务器（获取资源服务器中的资源，必须带有token才能访问）
  * 注解 @EnableGlobalMethodSecurity(prePostEnabled = true) 开启方法级别权限控制
+ *
  * @author Ke Wang
  */
 @Configuration
@@ -30,6 +31,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+
         /*
          * 设置当前资源服务器的ID；
          * 认证服务会认证客户端有没有访问这个资源ID的权限
@@ -70,4 +72,5 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 // 设定资源服务器要求所有请求都必须有all范围(在认证服务器上针对客户端配置的范围)
                 .antMatchers("/**").access("#oauth2.hasScope('PRODUCT_API')");
     }
+
 }

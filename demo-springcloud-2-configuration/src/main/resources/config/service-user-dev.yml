@@ -56,6 +56,12 @@ hystrix:
         sleepWindowInMilliseconds: 30000 # 休眠时间窗，默认值5000(5秒)
         errorThresholdPercentage: 60 # 超时/失败百分比，默认50（50%）
 
+logging:
+  level:
+    root: info
+    com.cloud: debug
+  file: logs/${spring.application.name}.log
+
 management:
   security:
     enabled: false # 关闭验证

@@ -30,5 +30,5 @@ logging:
   level:
     root: info
     com.cloud: debug
-  file: logs/${spring.application.name}.log    
+  file: logs/${spring.application.name}.log
       

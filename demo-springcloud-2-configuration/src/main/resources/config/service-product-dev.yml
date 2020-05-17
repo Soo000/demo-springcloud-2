@@ -55,6 +55,12 @@ feign:
   hystrix:
     enabled: true # hystrix 在 Feign 中的开关
 
+logging:
+  level:
+    root: info
+    com.cloud: debug
+  file: logs/${spring.application.name}.log
+
 management:
   security:
     enabled: false # 关闭验证

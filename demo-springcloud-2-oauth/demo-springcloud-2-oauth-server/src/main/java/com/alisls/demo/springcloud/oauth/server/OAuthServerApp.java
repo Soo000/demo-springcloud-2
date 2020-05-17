@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * 认证服务器启动类
+ *
+ * @author Ke Wang
  */
 @SpringBootApplication
 public class OAuthServerApp {
