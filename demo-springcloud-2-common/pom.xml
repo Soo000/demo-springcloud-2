@@ -35,5 +35,6 @@
 		<module>demo-springcloud-2-common-core</module>
 		<module>demo-springcloud-2-common-model</module>
 		<module>demo-springcloud-2-common-swagger</module>
-	</modules>
+        <module>demo-springcloud-2-common-service</module>
+    </modules>
 </project>
