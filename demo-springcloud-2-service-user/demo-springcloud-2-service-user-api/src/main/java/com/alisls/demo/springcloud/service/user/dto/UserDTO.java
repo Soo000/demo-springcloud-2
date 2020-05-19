@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * 用户DTO
  *
@@ -23,9 +25,11 @@ public class UserDTO implements Serializable {
 	private Long id;
 
 	@ApiModelProperty(value = "用户名", required = true, example = "wangke")
+	@NotBlank(message = "用户名不能为空！")
 	private String username;
 
     @ApiModelProperty(value = "用户昵称", required = true, example = "小可")
+    @NotBlank(message = "用户昵称不能为空！")
 	private String nickname;
 
     @ApiModelProperty(value = "手机号码", example = "15091545831")

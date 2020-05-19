@@ -16,10 +16,10 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 
 /**
  * 用户管理
@@ -58,11 +58,6 @@ public class UserController {
 	@GetMapping("/getUserById/{id}")
     @HystrixCommand(fallbackMethod = "getUserByIdFallback")
 	public Result getUserById(@PathVariable Long id) {
-		try {
-			Thread.sleep(3000L);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		UserDTO userDTO = userService.getUser(id);
 		return DataResult.ofSuccess(userDTO);
 	}
@@ -129,6 +124,28 @@ public class UserController {
 		log.info("根据用户标识{}查询用户和订单信息接口调用超时", id);
 		return Result.ofTimeout();
 	}
+
+	/**
+	 * 保存用户
+	 */
+	@PostMapping("/save")
+	@ApiOperation(value = "保存用户", notes = "保存用户信息")
+	public Result saveUser(@RequestBody @Valid UserDTO userDTO) {
+		userDTO = userService.save(userDTO);
+		return DataResult.ofSuccess(userDTO);
+	}
+
+    /**
+     * 修改用户
+     * @param userDTO
+     */
+    @ApiOperation(value = "修改用户", notes = "修改用户信息")
+	@PutMapping("/update/{id}")
+	public Result updateUser(@PathVariable Long id, @RequestBody @Valid UserDTO userDTO) {
+        userDTO.setId(id);
+        userDTO = userService.update(userDTO);
+        return DataResult.ofSuccess(userDTO);
+    }
 	
 	/**
 	 * 通用服务降级方法

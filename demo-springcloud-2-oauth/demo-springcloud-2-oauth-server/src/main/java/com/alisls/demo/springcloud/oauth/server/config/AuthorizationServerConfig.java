@@ -62,7 +62,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     /**
      * 授权码管理策略
      * 向容器注入JdbcAuthorizationCodeServices，用来用Jdbc管理授权码
-     * @return
      */
     @Bean
     public AuthorizationCodeServices jdbcAuthorizationCodeServices() {
@@ -71,8 +70,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     /**
      * 客户端管理策略
-     * 向容器注入JdbcClientDetailsService，用来用Jdbc管理授客户端
-     * @return
+     * 向容器注入JdbcClientDetailsService类实例，用Jdbc方式管理客户端信息，默认客户端表为oauth_client_details
      */
     @Bean
     public ClientDetailsService jdbcClientDetailsService() {
@@ -80,6 +78,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     }
 
     /**
+     * 配置客户端信息存储方式：内存方式
      * 内存方式配置被允许访问此认证服务器的客户端信息
      *   1）内存方式
      *   2）数据库方式
@@ -97,7 +96,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 // 资源ID，如微服务名称。即当前客户端可以访问哪些微服务，如配置即可全部访问
                 .resourceIds("demo-springcloud-service-product-service")
                 *//*
-                 * 配置授权方式，这里可以配置多种模式
+                 * 配置授权模式，可以同时配置多种授权模式：
                  * authorization_code 授权码模式
                  * password 密码模式
                  * implicit 简化模式
@@ -135,7 +134,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     }*/
 
     /**
-     * 数据方式配置被允许访问此认证服务器的客户端信息
+     * 配置客户端信息存储方式：数据库方式
+     * 数据库方式配置被允许访问此认证服务器的客户端信息
      * 客户端信息配置方式有以下两种：
      *   1）内存方式
      *   2）数据库方式
@@ -149,7 +149,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     }
 
     /**
-     * 关于认证服务器端点的配置
+     * 配置认证服务器端点
      * @param endpoints
      * @throws Exception
      */

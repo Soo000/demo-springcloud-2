@@ -2,6 +2,7 @@ package com.demo.springcloud.common.core.advice;
 
 import com.demo.springcloud.common.core.exception.BizException;
 import org.springframework.beans.TypeMismatchException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
@@ -14,7 +15,6 @@ public class BaseAdvice {
     /**
      * 捕获TypeMismatchException异常
      * @param typeMismatchException
-     * @return String
      */
     @ExceptionHandler(TypeMismatchException.class)
     public String argumentTypeMismatchException(TypeMismatchException typeMismatchException) {
@@ -22,8 +22,16 @@ public class BaseAdvice {
     }
 
     /**
+     * 捕获MethodArgumentNotValidException异常
+     * Hibernate-Validator校验框架抛出的异常
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public String methodArgumentNotValidException(MethodArgumentNotValidException methodArgumentNotValidException) {
+        return methodArgumentNotValidException.getMessage();
+    }
+
+    /**
      * 捕获BizException异常
-     * @return
      */
     @ExceptionHandler(BizException.class)
     public String bizException(BizException bizException) {
