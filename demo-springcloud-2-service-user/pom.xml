@@ -14,6 +14,6 @@
 	
 	<modules>
 		<module>demo-springcloud-2-service-user-api</module>
-		<module>demo-springcloud-service-user-service</module>
-	</modules>
+        <module>demo-springcloud-2-service-user-biz</module>
+    </modules>
 </project>
