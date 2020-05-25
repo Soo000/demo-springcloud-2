@@ -30,7 +30,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService customUserDetailsService;
 
     /**
-     * 用户信息（保持在内存中）
+     * 获取用户信息（从内存中获取用户信息）
      * @param auth 认证管理
      * @throws Exception 用户认证异常信息
      */
@@ -51,7 +51,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     }*/
 
     /**
-     * 用户信息（从UserDetailsService接口中查询）
+     * 获取用户信息（从UserDetailsService接口中查询）
      * @param auth
      * @throws Exception
      */

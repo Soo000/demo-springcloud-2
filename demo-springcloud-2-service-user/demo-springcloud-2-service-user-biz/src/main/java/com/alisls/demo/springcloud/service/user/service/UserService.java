@@ -13,6 +13,8 @@ public interface UserService {
 
     UserDTO getUser(String username);
 
+    UserDTO getUserWithPwd(String username);
+
     UserDTO save(UserDTO userDTO);
 
     UserDTO update(UserDTO userDTO);

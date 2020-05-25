@@ -82,8 +82,25 @@ public class UserController {
             example = "wangke"
     )
 	@GetMapping("/getUserByUsername/{username}")
-	public ResponseEntity<UserDTO> getUserByName(@PathVariable String username) {
+	public ResponseEntity<UserDTO> getUserByUsername(@PathVariable String username) {
         UserDTO userDTO = userService.getUser(username);
+		return ResponseEntity.ok(userDTO);
+	}
+
+	/**
+	 * 根据用户名查询用户（用户信息带有密码信息）
+	 */
+	@ApiOperation(value = "查询用户", notes = "根据用户名查询用户（用户信息带有密码信息")
+	@ApiImplicitParam(
+			name = "username",
+			required = true,
+			paramType = "path",
+			dataType = "String",
+			example = "wangke"
+	)
+	@GetMapping("/getUserWithPwdByUsername/{username}")
+	public ResponseEntity<UserDTO> getUserWithPwdByUsername(@PathVariable String username) {
+		UserDTO userDTO = userService.getUserWithPwd(username);
 		return ResponseEntity.ok(userDTO);
 	}
 

@@ -42,6 +42,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private PasswordEncoder passwordEncoder;
 
     @Autowired
+    private DataSource dataSource;
+
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Resource
@@ -50,23 +53,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private TokenStore tokenStore;
 
-    @Autowired
-    private DataSource dataSource;
-
     /**
      * JWT转换器
      */
     @Autowired
     private JwtAccessTokenConverter jwtAccessTokenConverter;
-
-    /**
-     * 授权码管理策略
-     * 向容器注入JdbcAuthorizationCodeServices，用来用Jdbc管理授权码
-     */
-    @Bean
-    public AuthorizationCodeServices jdbcAuthorizationCodeServices() {
-        return new JdbcAuthorizationCodeServices(dataSource);
-    }
 
     /**
      * 客户端管理策略
@@ -75,6 +66,15 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Bean
     public ClientDetailsService jdbcClientDetailsService() {
         return new JdbcClientDetailsService(dataSource);
+    }
+
+    /**
+     * 授权码管理策略
+     * 向容器注入JdbcAuthorizationCodeServices，用来用Jdbc管理授权码
+     */
+    @Bean
+    public AuthorizationCodeServices jdbcAuthorizationCodeServices() {
+        return new JdbcAuthorizationCodeServices(dataSource);
     }
 
     /**

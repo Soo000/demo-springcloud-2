@@ -2,6 +2,7 @@ package com.alisls.demo.springcloud.service.user.service.impl;
 
 import com.alisls.demo.springcloud.service.user.dao.UserDAO;
 import com.alisls.demo.springcloud.service.user.dto.UserDTO;
+import com.alisls.demo.springcloud.service.user.dto.UserPwdDTO;
 import com.alisls.demo.springcloud.service.user.entity.UserDO;
 import com.alisls.demo.springcloud.service.user.service.UserService;
 import com.demo.springcloud.common.core.util.IdWorker;
@@ -56,6 +57,21 @@ public class UserServiceImpl implements UserService {
         UserDO userDO = userDAO.findByUsername(username);
 
         UserDTO userDTO = new UserDTO();
+        if (userDO != null) {
+            BeanUtils.copyProperties(userDO, userDTO);
+        }
+
+        return userDTO;
+    }
+
+    /**
+     * 根据用户名查询用户（用户结果带有密码字段）
+     */
+    @Override
+    public UserDTO getUserWithPwd(String username) {
+        UserDO userDO = userDAO.findByUsername(username);
+
+        UserDTO userDTO = new UserPwdDTO();
         if (userDO != null) {
             BeanUtils.copyProperties(userDO, userDTO);
         }
