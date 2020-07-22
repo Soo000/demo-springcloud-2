@@ -70,7 +70,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     /**
      * 授权码管理策略
-     * 向容器注入JdbcAuthorizationCodeServices，用来用Jdbc管理授权码
+     * 向容器注入JdbcAuthorizationCodeServices，用来用Jdbc管理授权码，默认表为oauth_code
      */
     @Bean
     public AuthorizationCodeServices jdbcAuthorizationCodeServices() {
