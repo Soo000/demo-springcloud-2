@@ -6,24 +6,22 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 网关配置类
+ * 路由配置类
  *
  * @author Ke Wang
  */
 @Configuration
 public class GatewayConfig {
 
-	/**
-	 * 自定义路由
-	 */
-	@Bean
-    public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
-		
-		// 访问 http://www.xxx.com/user 会自动跳转到 http://localhost:15001/user TODO 暂未测试通过
+    /**
+     * 代码配置路由
+     * 注意：通过代码配置路由，配置文件中配置的路由需要屏蔽掉
+     */
+    @Bean
+    public RouteLocator routeLocator(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("my-user", r -> r.path("/user")
-                        .uri("http://localhost:15001"))
+                .route("path_route", r -> r.path("/csdn").uri("https://blog.csdn.net"))
                 .build();
     }
-	
+
 }

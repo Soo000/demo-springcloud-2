@@ -1,2 +1,6 @@
 /target/
 /.settings/
+
+# iDEA project files
+.iml
+
